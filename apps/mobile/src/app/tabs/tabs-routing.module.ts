@@ -15,12 +15,16 @@ const routes: Routes = [
       {
         path: 'insights',
         loadChildren: () =>
-          import('../tab2/tab2.module').then((m) => m.Tab2PageModule),
+          import('../insights/insights.module').then(
+            (m) => m.InsightsPageModule
+          ),
       },
       {
-        path: 'tab3',
+        path: 'my-tasks',
         loadChildren: () =>
-          import('../tab3/tab3.module').then((m) => m.Tab3PageModule),
+          import('../my-tasks/my-tasks.module').then(
+            (m) => m.MyTasksPageModule
+          ),
       },
       {
         path: '',

@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'task-ninja-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss'],
+  templateUrl: 'my-tasks.page.html',
+  styleUrls: ['my-tasks.page.scss'],
 })
-export class Tab3Page {
+export class MyTasksPage {
   constructor() {}
 }
