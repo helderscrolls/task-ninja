@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@task-ninja/mobile/groceries/feature": [
+        "libs/mobile/groceries/feature/src/index.ts"
+      ],
       "@task-ninja/mobile/home/feature": [
         "libs/mobile/home/feature/src/index.ts"
       ],

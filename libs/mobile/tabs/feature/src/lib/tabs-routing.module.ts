@@ -29,6 +29,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'groceries',
+        loadChildren: () =>
+          import('@task-ninja/mobile/groceries/feature').then(
+            (m) => m.GroceriesPagesComponentModule
+          ),
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
