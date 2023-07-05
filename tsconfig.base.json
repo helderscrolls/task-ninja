@@ -21,6 +21,9 @@
       "@task-ninja/mobile/insights/feature": [
         "libs/mobile/insights/feature/src/index.ts"
       ],
+      "@task-ninja/mobile/shell/feature": [
+        "libs/mobile/shell/feature/src/index.ts"
+      ],
       "@task-ninja/mobile/tabs/feature": [
         "libs/mobile/tabs/feature/src/index.ts"
       ],

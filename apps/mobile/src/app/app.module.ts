@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 
-import { AppRoutingModule } from './app-routing.module';
+import { MobileShellModule } from '@task-ninja/mobile/shell/feature';
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [IonicModule.forRoot(), MobileShellModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
