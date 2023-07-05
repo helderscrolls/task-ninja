@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { HomePageComponent } from './home.page';
 
-describe('HomePage', () => {
+describe('HomePageComponent', () => {
   let component: HomePageComponent;
   let fixture: ComponentFixture<HomePageComponent>;
 

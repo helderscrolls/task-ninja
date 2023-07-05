@@ -17,6 +17,9 @@
     "paths": {
       "@task-ninja/mobile/home/feature": [
         "libs/mobile/home/feature/src/index.ts"
+      ],
+      "@task-ninja/mobile/insights/feature": [
+        "libs/mobile/insights/feature/src/index.ts"
       ]
     }
   },

@@ -17,8 +17,8 @@ const routes: Routes = [
       {
         path: 'insights',
         loadChildren: () =>
-          import('../insights/insights.module').then(
-            (m) => m.InsightsPageModule
+          import('@task-ninja/mobile/insights/feature').then(
+            (m) => m.InsightsPageComponentModule
           ),
       },
       {
