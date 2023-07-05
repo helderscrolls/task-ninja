@@ -5,7 +5,9 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+      import('@task-ninja/mobile/tabs/feature').then(
+        (m) => m.TabsPageComponentModule
+      ),
   },
 ];
 @NgModule({

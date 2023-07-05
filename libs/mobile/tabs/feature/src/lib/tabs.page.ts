@@ -6,7 +6,7 @@ import { ActionSheetController } from '@ionic/angular';
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
 })
-export class TabsPage {
+export class TabsPageComponent {
   constructor(private actionSheetController: ActionSheetController) {}
 
   async selectAction() {
