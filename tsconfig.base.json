@@ -20,6 +20,9 @@
       ],
       "@task-ninja/mobile/insights/feature": [
         "libs/mobile/insights/feature/src/index.ts"
+      ],
+      "@task-ninja/mobile/tasks/feature": [
+        "libs/mobile/tasks/feature/src/index.ts"
       ]
     }
   },

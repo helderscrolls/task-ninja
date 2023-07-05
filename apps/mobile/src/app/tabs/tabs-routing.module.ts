@@ -22,10 +22,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'my-tasks',
+        path: 'tasks',
         loadChildren: () =>
-          import('../my-tasks/my-tasks.module').then(
-            (m) => m.MyTasksPageModule
+          import('@task-ninja/mobile/tasks/feature').then(
+            (m) => m.TasksPageComponentModule
           ),
       },
       {
