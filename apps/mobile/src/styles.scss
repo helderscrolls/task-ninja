@@ -528,7 +528,8 @@ ion-tab-button ion-label {
 /* Fab button */
 ion-fab.ion-fab-custom {
   margin-inline-start: -32px;
-  bottom: 36px;
+  //TODO: Re-enable this for Native App
+  // bottom: 36px;
   background: var(--ion-color-dark-shade);
   padding: 8px;
   border-radius: 50%;
