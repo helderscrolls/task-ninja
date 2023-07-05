@@ -15,26 +15,26 @@ export class TabsPage {
       cssClass: 'custom-action-sheet',
       buttons: [
         {
-          text: 'Add account',
-          icon: 'wallet',
+          text: 'Add task',
+          icon: 'newspaper',
           handler: () => {
             // Put in logic ...
           },
         },
         {
-          text: 'Add transaction',
-          icon: 'swap-horizontal-outline',
+          text: 'Add grocery item',
+          icon: 'cart-outline',
           handler: () => {
             // Put in logic ...
           },
         },
-        {
-          text: 'Set budget',
-          icon: 'calculator',
-          handler: () => {
-            // Put in logic ...
-          },
-        },
+        // {
+        //   text: 'Set budget',
+        //   icon: 'calculator',
+        //   handler: () => {
+        //     // Put in logic ...
+        //   },
+        // },
         {
           text: 'Cancel',
           icon: 'close',
