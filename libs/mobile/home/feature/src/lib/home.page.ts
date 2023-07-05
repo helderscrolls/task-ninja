@@ -5,10 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePageComponent implements OnInit {
   contentLoaded = false;
-
-  constructor() {}
 
   ngOnInit(): void {
     // Fake timeout
