@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "task-ninja-42158": {
+      "hosting": {
+        "mobile": [
+          "task-ninja-42158"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "task-ninja-42158"
+  }
+}

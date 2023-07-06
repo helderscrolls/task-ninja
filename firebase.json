@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "mobile",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
