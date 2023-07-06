@@ -51,7 +51,7 @@ export class AuthService {
     }
   }
 
-  logout(): Promise<void> {
+  signOut(): Promise<void> {
     return signOut(this.auth);
   }
 }
