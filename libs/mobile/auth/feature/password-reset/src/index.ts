@@ -1,1 +1,1 @@
-export * from './lib/mobile-auth-feature-password-reset.module';
+export * from './lib/password-reset.module';

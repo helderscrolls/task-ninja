@@ -41,9 +41,9 @@ export class SignupPageComponent {
 
     // If email or password empty
     if (
-      this.signupForm.value.email == '' ||
-      this.signupForm.value.password == '' ||
-      this.signupForm.value.password_repeat == ''
+      this.signupForm.value.email === '' ||
+      this.signupForm.value.password === '' ||
+      this.signupForm.value.password_repeat === ''
     ) {
       this.toastService.presentToast(
         'Error',

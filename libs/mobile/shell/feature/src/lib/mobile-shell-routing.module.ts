@@ -38,7 +38,7 @@ const routes: Routes = [
     path: 'password-reset',
     loadChildren: () =>
       import('@task-ninja/mobile/auth/feature/password-reset').then(
-        (m) => m.MobileAuthFeaturePasswordResetModule
+        (m) => m.PasswordResetPageComponentModule
       ),
     ...canActivate(redirectLoggedInToHome),
   },
