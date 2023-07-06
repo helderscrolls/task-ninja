@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar class="ion-no-border">
+    <ion-buttons slot="start">
+      <ion-back-button text="Sign in" defaultHref="/signin"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding ion-full-height ion-flex ion-flex-center">
+    <div class="logo-container">
+      <h1 class="logo-placeholder">Task Ninja</h1>
+      <p>Create a free account.</p>
+    </div>
+
+    <form class="form-default" [formGroup]="signupForm" (submit)="signUp()">
+      <ion-list class="item-card-list" lines="none">
+        <ion-item>
+          <ion-label color="tertiary" position="stacked">Username</ion-label>
+          <ion-input
+            formControlName="username"
+            type="text"
+            autocomplete="off"
+            placeholder="Your username"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="tertiary" position="stacked">Email</ion-label>
+          <ion-input
+            formControlName="email"
+            type="email"
+            autocomplete="off"
+            placeholder="Your email address"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-margin-top-small">
+          <ion-label color="tertiary" position="stacked">Password</ion-label>
+          <ion-input
+            formControlName="password"
+            type="password"
+            placeholder="Your password"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-margin-top-small">
+          <ion-label color="tertiary" position="stacked"
+            >Password repeat</ion-label
+          >
+          <ion-input
+            formControlName="password_repeat"
+            type="password"
+            placeholder="Password repeat"
+          ></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-button
+        class="ion-margin-top"
+        type="submit"
+        expand="block"
+        color="primary"
+      >
+        Sign up free
+      </ion-button>
+    </form>
+
+    <div class="ion-text-center ion-margin-top">
+      <ion-text color="medium">
+        <small>&copy; {{currentYear}} Task Ninja</small>
+      </ion-text>
+    </div>
+  </div>
+</ion-content>

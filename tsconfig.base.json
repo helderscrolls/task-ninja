@@ -18,6 +18,15 @@
       "@task-ninja/mobile/auth/data-access": [
         "libs/mobile/auth/data-access/src/index.ts"
       ],
+      "@task-ninja/mobile/auth/feature/password-reset": [
+        "libs/mobile/auth/feature/password-reset/src/index.ts"
+      ],
+      "@task-ninja/mobile/auth/feature/signin": [
+        "libs/mobile/auth/feature/signin/src/index.ts"
+      ],
+      "@task-ninja/mobile/auth/feature/signup": [
+        "libs/mobile/auth/feature/signup/src/index.ts"
+      ],
       "@task-ninja/mobile/groceries/feature": [
         "libs/mobile/groceries/feature/src/index.ts"
       ],
@@ -26,6 +35,9 @@
       ],
       "@task-ninja/mobile/insights/feature": [
         "libs/mobile/insights/feature/src/index.ts"
+      ],
+      "@task-ninja/mobile/shared/data-access": [
+        "libs/mobile/shared/data-access/src/index.ts"
       ],
       "@task-ninja/mobile/shell/feature": [
         "libs/mobile/shell/feature/src/index.ts"
