@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@task-ninja/mobile/auth/data-access": [
+        "libs/mobile/auth/data-access/src/index.ts"
+      ],
       "@task-ninja/mobile/groceries/feature": [
         "libs/mobile/groceries/feature/src/index.ts"
       ],

@@ -1,4 +1,5 @@
 export const environment = {
+  production: false,
   firebase: {
     projectId: 'task-ninja-42158',
     appId: '1:68101425411:web:25dfdffad9929eedb30136',
