@@ -55,15 +55,32 @@ export class SigninPageComponent {
       });
       await loading.present();
 
-      // TODO: Add your sign in logic
-      // ...
+      const user = await this.authService.signIn(
+        this.signInForm.value.email,
+        this.signInForm.value.password
+      );
+      await loading.dismiss();
 
-      // Fake timeout
-      setTimeout(async () => {
-        // Sign in success
-        await this.router.navigate(['/home']);
-        loading.dismiss();
-      }, 2000);
+      if (user) {
+        this.router.navigateByUrl('/home', { replaceUrl: true });
+
+        //TODO: Get Username from DB based on user.UID
+        // this.toastService.presentToast(
+        //   'Welcome!',
+        //   this.signInForm.value.username,
+        //   'top',
+        //   'success',
+        //   2000
+        // );
+      } else {
+        this.toastService.presentToast(
+          'Error',
+          'Sign in failed',
+          'top',
+          'danger',
+          4000
+        );
+      }
     }
   }
 }
