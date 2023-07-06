@@ -14,7 +14,7 @@ export class SignupPageComponent {
   currentYear: number = new Date().getFullYear();
   submitAttempt = false;
 
-  signupForm: FormGroup = this.formBuilder.group({
+  signUpForm: FormGroup = this.formBuilder.group({
     username: ['', Validators.compose([Validators.required])],
     email: ['', Validators.compose([Validators.email, Validators.required])],
     password: [
@@ -41,9 +41,9 @@ export class SignupPageComponent {
 
     // If email or password empty
     if (
-      this.signupForm.value.email === '' ||
-      this.signupForm.value.password === '' ||
-      this.signupForm.value.password_repeat === ''
+      this.signUpForm.value.email === '' ||
+      this.signUpForm.value.password === '' ||
+      this.signUpForm.value.password_repeat === ''
     ) {
       this.toastService.presentToast(
         'Error',
@@ -55,7 +55,7 @@ export class SignupPageComponent {
 
       // If passwords do not match
     } else if (
-      this.signupForm.value.password != this.signupForm.value.password_repeat
+      this.signUpForm.value.password != this.signUpForm.value.password_repeat
     ) {
       this.toastService.presentToast(
         'Error',
@@ -65,7 +65,6 @@ export class SignupPageComponent {
         4000
       );
     } else {
-      // Proceed with loading overlay
       const loading = await this.loadingController.create({
         cssClass: 'default-loading',
         message: '<p>Signing up...</p><span>Please be patient.</span>',
@@ -73,19 +72,32 @@ export class SignupPageComponent {
       });
       await loading.present();
 
-      // TODO: Add your sign up logic
-      // ...
-
-      // Success messages + routing
-      this.toastService.presentToast(
-        'Welcome!',
-        'Lorem ipsum',
-        'top',
-        'success',
-        2000
+      const user = await this.authService.signUp(
+        this.signUpForm.value.email,
+        this.signUpForm.value.password,
+        this.signUpForm.value.username
       );
-      await this.router.navigate(['/home']);
-      loading.dismiss();
+      await loading.dismiss();
+
+      if (user) {
+        this.router.navigateByUrl('/home', { replaceUrl: true });
+
+        this.toastService.presentToast(
+          'Welcome!',
+          this.signUpForm.value.username,
+          'top',
+          'success',
+          2000
+        );
+      } else {
+        this.toastService.presentToast(
+          'Error',
+          'Sign up failed',
+          'top',
+          'danger',
+          4000
+        );
+      }
     }
   }
 }
