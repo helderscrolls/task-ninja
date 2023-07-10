@@ -19,7 +19,6 @@ export class TasksPageComponent implements OnInit, OnDestroy {
       .getTasks()
       .pipe(takeUntil(this.isDestroyed$))
       .subscribe((tasks) => {
-        console.log('TASKS: ', tasks);
         this.contentLoaded = true;
         this.tasks = tasks;
       });
