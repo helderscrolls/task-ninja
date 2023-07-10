@@ -39,7 +39,6 @@
     "@typescript-eslint/parser": "^5.58.0",
     "commitizen": "^4.3.0",
     "cypress": "^12.11.0",
-    "cz-conventional": "^0.0.2",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
@@ -76,10 +75,5 @@
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional"
-    }
   }
 }

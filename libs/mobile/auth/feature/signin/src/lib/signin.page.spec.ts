@@ -1,19 +1,26 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SigninPage } from './signin.page';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '@task-ninja/mobile/auth/data-access';
+import { SigninPageComponent } from './signin.page';
 
-describe('SigninPage', () => {
-  let component: SigninPage;
-  let fixture: ComponentFixture<SigninPage>;
+describe('SigninPageComponent', () => {
+  let component: SigninPageComponent;
+  let fixture: ComponentFixture<SigninPageComponent>;
+
+  const authServiceMock = {
+    signIn: jest.fn(),
+  };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SigninPage ],
-      imports: [IonicModule.forRoot()]
+      declarations: [SigninPageComponent],
+      imports: [IonicModule.forRoot(), ReactiveFormsModule],
+      providers: [{ provide: AuthService, useValue: authServiceMock }],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SigninPage);
+    fixture = TestBed.createComponent(SigninPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

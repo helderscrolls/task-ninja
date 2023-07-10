@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
 })
 export class PasswordResetPageComponent {
   currentYear: number = new Date().getFullYear();
-  //Just messing around with Husky
 }
