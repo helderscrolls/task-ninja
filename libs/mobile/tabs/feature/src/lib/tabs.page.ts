@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
+import {
+  ActionSheetController,
+  IonRouterOutlet,
+  ModalController,
+} from '@ionic/angular';
+import { AddTaskComponent } from '@task-ninja/mobile/tasks/feature/add-task';
 
 @Component({
   selector: 'task-ninja-tabs',
@@ -7,7 +12,11 @@ import { ActionSheetController } from '@ionic/angular';
   styleUrls: ['tabs.page.scss'],
 })
 export class TabsPageComponent {
-  constructor(private actionSheetController: ActionSheetController) {}
+  constructor(
+    private actionSheetController: ActionSheetController,
+    private modalController: ModalController,
+    private routerOutlet: IonRouterOutlet
+  ) {}
 
   async selectAction() {
     const actionSheet = await this.actionSheetController.create({
@@ -17,8 +26,12 @@ export class TabsPageComponent {
         {
           text: 'Add task',
           icon: 'newspaper',
-          handler: () => {
-            // Put in logic ...
+          handler: async () => {
+            const modal = await this.modalController.create({
+              component: AddTaskComponent,
+              presentingElement: this.routerOutlet.nativeEl,
+            });
+            return await modal.present();
           },
         },
         {

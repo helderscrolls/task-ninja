@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()"> Cancel </ion-button>
+    </ion-buttons>
+    <ion-title> Add task </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <form class="form-default" [formGroup]="addTaskForm" (submit)="save()">
+      <ion-list class="item-card-list" lines="none">
+        <ion-item>
+          <ion-label color="tertiary" position="stacked">Task title</ion-label>
+          <ion-input
+            formControlName="title"
+            placeholder="A task title"
+            type="text"
+            errorText="Task title cannot be empty."
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="tertiary" position="stacked">Description</ion-label>
+          <ion-input
+            formControlName="description"
+            placeholder="A task description"
+            type="text"
+            errorText="Description is required."
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="tertiary" position="stacked">Task type</ion-label>
+          <ion-select
+            formControlName="type"
+            [interfaceOptions]="customPopoverOptions"
+            interface="popover"
+            placeholder="Select One"
+            errorText="Task type is required."
+          >
+            <ion-select-option value="uncategorized">
+              Uncategorized
+            </ion-select-option>
+            <ion-select-option value="Cleaning">Cleaning</ion-select-option>
+            <ion-select-option value="Maintenance">
+              Maintenance
+            </ion-select-option>
+            <ion-select-option value="Gardening">Gardening</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer class="modal-footer" collapse="fade">
+  <ion-toolbar>
+    <form class="form-default" [formGroup]="addTaskForm" (submit)="save()">
+      <ion-button type="submit" expand="block" color="primary">
+        Save task
+      </ion-button>
+    </form>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,78 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Tasks </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tasks</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="ion-padding">
+    <!-- Skeletons -->
+    <ng-container *ngIf="!contentLoaded">
+      <ion-list-header class="ion-list-header-small">
+        <ion-label
+          ><ion-skeleton-text animated style="width: 50%"></ion-skeleton-text
+        ></ion-label>
+        <ion-note color="tertiary" class="ion-note-small">
+          <ion-skeleton-text animated style="width: 40px"></ion-skeleton-text>
+        </ion-note>
+      </ion-list-header>
+      <ion-list
+        class="list-custom animate__animated animate__fadeIn"
+        lines="full"
+      >
+        <ion-item button detail="false" *ngFor="let i of [].constructor(12);">
+          <ion-avatar slot="start" class="ion-avatar-default-icon">
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-avatar>
+          <ion-label>
+            <h3>
+              <ion-skeleton-text
+                animated
+                style="width: 50%"
+              ></ion-skeleton-text>
+            </h3>
+            <p>
+              <ion-skeleton-text
+                animated
+                style="width: 75%"
+              ></ion-skeleton-text>
+            </p>
+          </ion-label>
+          <ion-skeleton-text
+            slot="end"
+            animated
+            style="width: 15%"
+          ></ion-skeleton-text>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+
+    <ng-container *ngIf="contentLoaded">
+      <ion-list
+        class="list-custom animate__animated animate__fadeIn"
+        lines="full"
+      >
+        <ion-item
+          button
+          detail="false"
+          routerLink="detail"
+          *ngFor="let task of tasks"
+        >
+          <ion-avatar slot="start" class="ion-avatar-default-icon">
+            <ion-icon name="cafe"></ion-icon>
+          </ion-avatar>
+          <ion-label>
+            <h3>{{task.title}}</h3>
+            <p>{{task.type}} &middot; {{ task.userId }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+  </div>
+</ion-content>

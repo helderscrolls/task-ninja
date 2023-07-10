@@ -45,8 +45,14 @@
       "@task-ninja/mobile/tabs/feature": [
         "libs/mobile/tabs/feature/src/index.ts"
       ],
-      "@task-ninja/mobile/tasks/feature": [
-        "libs/mobile/tasks/feature/src/index.ts"
+      "@task-ninja/mobile/tasks/data-access": [
+        "libs/mobile/tasks/data-access/src/index.ts"
+      ],
+      "@task-ninja/mobile/tasks/feature/add-task": [
+        "libs/mobile/tasks/feature/add-task/src/index.ts"
+      ],
+      "@task-ninja/mobile/tasks/feature/tasks": [
+        "libs/mobile/tasks/feature/tasks/src/index.ts"
       ]
     }
   },

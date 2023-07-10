@@ -24,7 +24,7 @@ const routes: Routes = [
       {
         path: 'tasks',
         loadChildren: () =>
-          import('@task-ninja/mobile/tasks/feature').then(
+          import('@task-ninja/mobile/tasks/feature/tasks').then(
             (m) => m.TasksPageComponentModule
           ),
       },
