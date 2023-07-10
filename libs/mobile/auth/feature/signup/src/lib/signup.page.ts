@@ -39,8 +39,9 @@ export class SignupPageComponent {
   async signUp() {
     this.submitAttempt = true;
 
-    // If email or password empty
+    // If username, email or password empty
     if (
+      this.signUpForm.value.username === '' ||
       this.signUpForm.value.email === '' ||
       this.signUpForm.value.password === '' ||
       this.signUpForm.value.password_repeat === ''
