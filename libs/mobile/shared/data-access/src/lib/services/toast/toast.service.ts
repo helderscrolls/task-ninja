@@ -39,4 +39,15 @@ export class ToastService {
     });
     await toast.present();
   }
+
+  async updateAvailableToast() {
+    const toast = await this.toastController.create({
+      message: 'Update available!',
+      position: 'bottom',
+      buttons: [{ role: 'cancel', text: 'Reload' }],
+    });
+
+    await toast.present();
+    return toast;
+  }
 }
