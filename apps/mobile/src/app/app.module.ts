@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -14,6 +14,7 @@ import { Capacitor } from '@capacitor/core';
 import { MobileShellModule } from '@task-ninja/mobile/shell/feature';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,12 @@ import { AppComponent } from './app.component';
       }
     }),
     provideFirestore(() => getFirestore()),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   bootstrap: [AppComponent],
 })
