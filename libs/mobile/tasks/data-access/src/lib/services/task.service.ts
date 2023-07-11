@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+  FieldValue,
   Firestore,
   addDoc,
   collection,
@@ -7,6 +8,9 @@ import {
   deleteDoc,
   doc,
   docData,
+  orderBy,
+  query,
+  serverTimestamp,
   updateDoc,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -17,6 +21,8 @@ export interface Task {
   title: string;
   description: string;
   type: string;
+  createdAt?: FieldValue;
+  updatedAt?: FieldValue;
 }
 
 @Injectable({
@@ -27,7 +33,11 @@ export class TaskService {
 
   getTasks(): Observable<Task[]> {
     const tasksRef = collection(this.firestore, 'tasks');
-    return collectionData(tasksRef, { idField: 'id' }) as Observable<Task[]>;
+    const tasksRefQuery = query(tasksRef, orderBy('createdAt', 'desc'));
+
+    return collectionData(tasksRefQuery, { idField: 'id' }) as Observable<
+      Task[]
+    >;
   }
 
   getTaskById(id: string): Observable<Task> {
@@ -36,8 +46,13 @@ export class TaskService {
   }
 
   addTask(task: Task) {
+    const timestampedTask: Task = {
+      ...task,
+      createdAt: serverTimestamp(),
+    };
+
     const tasksRef = collection(this.firestore, 'tasks');
-    return addDoc(tasksRef, task);
+    return addDoc(tasksRef, timestampedTask);
   }
 
   deleteTask(task: Task) {
@@ -51,6 +66,7 @@ export class TaskService {
       title: task.title,
       description: task.description,
       type: task.type,
+      updatedAt: serverTimestamp(),
     });
   }
 }
