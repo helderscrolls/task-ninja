@@ -11,13 +11,15 @@ export class AppComponent implements OnInit {
   constructor(private swUpdate: SwUpdate, private toastService: ToastService) {}
 
   async ngOnInit() {
-    this.swUpdate.versionUpdates.subscribe(async () => {
-      const toast = await this.toastService.updateAvailableToast();
+    this.swUpdate.versionUpdates.subscribe(async (res) => {
+      if (res.type === 'VERSION_READY') {
+        const toast = await this.toastService.updateAvailableToast();
 
-      toast
-        .onDidDismiss()
-        .then(() => this.swUpdate.activateUpdate())
-        .then(() => window.location.reload());
+        toast
+          .onDidDismiss()
+          .then(() => this.swUpdate.activateUpdate())
+          .then(() => window.location.reload());
+      }
     });
 
     this.swUpdate.checkForUpdate();
