@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "www",
+    "public": "dist/apps/mobile",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
@@ -10,7 +10,7 @@
     ],
     "headers": [
       {
-        "source": "/dist/apps/mobile/**",
+        "source": "dist/apps/mobile/**",
         "headers": [
           {
             "key": "Cache-Control",
