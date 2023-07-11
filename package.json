@@ -17,6 +17,7 @@
     "@angular/cli": "~16.0.0",
     "@angular/compiler-cli": "~16.0.0",
     "@angular/language-service": "~16.0.0",
+    "@angular/pwa": "^16.1.4",
     "@capacitor/android": "^5.0.3",
     "@capacitor/cli": "^5.0.3",
     "@capacitor/ios": "^5.0.3",
