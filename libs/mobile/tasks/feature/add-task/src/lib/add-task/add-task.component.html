@@ -17,9 +17,14 @@
             formControlName="title"
             placeholder="A task title"
             type="text"
-            errorText="Task title cannot be empty."
           ></ion-input>
         </ion-item>
+        <ion-text
+          *ngIf="f['title'].errors?.['required'] && submitAttempt"
+          color="danger"
+        >
+          <small class="error-message-form">Task title is required.</small>
+        </ion-text>
 
         <ion-item>
           <ion-label color="tertiary" position="stacked">Description</ion-label>
@@ -27,29 +32,45 @@
             formControlName="description"
             placeholder="A task description"
             type="text"
-            errorText="Description is required."
           ></ion-input>
         </ion-item>
-
+        <ion-text
+          *ngIf="f['description'].errors?.['required'] && submitAttempt"
+          color="danger"
+        >
+          <small class="error-message-form"
+            >Task description is required.</small
+          >
+        </ion-text>
         <ion-item>
           <ion-label color="tertiary" position="stacked">Task type</ion-label>
           <ion-select
+            class="always-flip"
             formControlName="type"
-            [interfaceOptions]="customPopoverOptions"
+            toggleIcon="caret-down-sharp"
             interface="popover"
+            [interfaceOptions]="customPopoverOptions"
             placeholder="Select One"
-            errorText="Task type is required."
           >
             <ion-select-option value="uncategorized">
               Uncategorized
             </ion-select-option>
+
             <ion-select-option value="Cleaning">Cleaning</ion-select-option>
+
             <ion-select-option value="Maintenance">
               Maintenance
             </ion-select-option>
+
             <ion-select-option value="Gardening">Gardening</ion-select-option>
           </ion-select>
         </ion-item>
+        <ion-text
+          *ngIf="f['type'].errors?.['required'] && submitAttempt"
+          color="danger"
+        >
+          <small class="error-message-form">Task type is required.</small>
+        </ion-text>
       </ion-list>
     </form>
   </div>

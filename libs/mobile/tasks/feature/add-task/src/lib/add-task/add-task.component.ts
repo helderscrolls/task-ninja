@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { TaskService } from '@task-ninja/mobile/tasks/data-access';
 @Component({
@@ -27,17 +32,20 @@ export class AddTaskComponent {
     private taskService: TaskService
   ) {}
 
+  // Maybe rename this function into formControls
+  // to make it more readable in the future
+  get f(): { [key: string]: AbstractControl } {
+    return this.addTaskForm.controls;
+  }
+
   cancel() {
     this.modalController.dismiss();
   }
 
-  // Save card
   async save() {
     this.submitAttempt = true;
 
-    // If form valid
     if (this.addTaskForm.valid) {
-      // Loading overlay
       const loading = await this.loadingController.create({
         cssClass: 'default-loading',
         message: '<p>Saving task...</p><span>Please be patient.</span>',
