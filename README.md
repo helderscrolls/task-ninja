@@ -62,10 +62,10 @@ Any of the above commands will trigger the commit wizard and guide you to use ou
 
 ## Demo
 
-The project uses Github Actions to automagically deploy to Firebase, when code gets merged into `main` or PRs are created.
+The project uses Github Actions to automagically deploy to Firebase when code gets merged into `main` or a `PR` is created.
 
-You can see the running application, [here](https://task-ninja-42158.web.app/).
+You can see the running application [here](https://task-ninja-42158.web.app/).
 
 ## Support
 
-Please [open an issue](https://github.com/fraction/readme-boilerplate/issues/new) for support.
+Please [open an issue](https://github.com/helderscrolls/task-ninja/issues/new) for support.
