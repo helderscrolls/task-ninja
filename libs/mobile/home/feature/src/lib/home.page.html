@@ -29,7 +29,7 @@
       <ion-label color="white">My tasks</ion-label>
     </ion-list-header>
 
-    <!-- Skeletons -->
+    <!-- My Tasks -->
     <ion-list
       class="item-card-list animate__animated animate__fadeIn"
       *ngIf="!ownedTasksLoaded"
@@ -67,6 +67,63 @@
           <h3>{{ ownedTask.title }}</h3>
           <p>{{ ownedTask.type.name }}</p>
         </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <hr />
+
+    <ion-list-header>
+      <ion-label color="white">Recent tasks</ion-label>
+      <ion-button *ngIf="tasksLoaded" routerLink="/tasks"
+        >See All <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      </ion-button>
+    </ion-list-header>
+
+    <!-- All Tasks -->
+    <ion-list
+      class="list-custom animate__animated animate__fadeIn"
+      lines="full"
+      *ngIf="!tasksLoaded"
+    >
+      <ion-item *ngFor="let i of [].constructor(3);">
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+        <ion-skeleton-text
+          slot="end"
+          animated
+          style="width: 10%"
+        ></ion-skeleton-text>
+      </ion-item>
+    </ion-list>
+
+    <ion-list
+      class="list-custom animate__animated animate__fadeIn"
+      lines="full"
+      *ngIf="tasksLoaded"
+    >
+      <ion-item
+        button
+        detail="false"
+        routerLink="/tasks/detail/{{task.id}}"
+        *ngFor="let task of tasks| slice:0:3; let i=index"
+      >
+        <ion-label>
+          <h3>{{ task.title }}</h3>
+          <p>{{ task.type.name }} &middot; {{ task.owner }}</p>
+        </ion-label>
+        <ion-badge
+          color="medium"
+          mode="ios"
+          slot="end"
+          *ngIf="task.owner === currentUser"
+          >Yours</ion-badge
+        >
       </ion-item>
     </ion-list>
 
