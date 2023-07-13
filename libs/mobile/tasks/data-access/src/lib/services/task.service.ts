@@ -65,8 +65,8 @@ export class TaskService {
     return addDoc(tasksRef, timestampedTask);
   }
 
-  deleteTask(task: Task) {
-    const taskDocRef = doc(this.firestore, `tasks/${task.id}`);
+  deleteTask(id: string) {
+    const taskDocRef = doc(this.firestore, `tasks/${id}`);
     return deleteDoc(taskDocRef);
   }
 
@@ -77,6 +77,13 @@ export class TaskService {
       description: task.description,
       type: task.type,
       updatedAt: serverTimestamp(),
+    });
+  }
+
+  assignTask(id: string) {
+    const taskDocRef = doc(this.firestore, `tasks/${id}`);
+
+    return updateDoc(taskDocRef, {
       owner: this.auth.currentUser?.displayName,
     });
   }

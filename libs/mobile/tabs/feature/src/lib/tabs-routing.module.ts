@@ -23,10 +23,22 @@ const routes: Routes = [
       },
       {
         path: 'tasks',
-        loadChildren: () =>
-          import('@task-ninja/mobile/tasks/feature/tasks').then(
-            (m) => m.TasksPageComponentModule
-          ),
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('@task-ninja/mobile/tasks/feature/tasks').then(
+                (m) => m.TasksPageComponentModule
+              ),
+          },
+          {
+            path: 'detail/:id',
+            loadChildren: () =>
+              import('@task-ninja/mobile/tasks/feature/task-detail').then(
+                (m) => m.TaskDetailModule
+              ),
+          },
+        ],
       },
       {
         path: 'groceries',

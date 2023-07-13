@@ -4,18 +4,18 @@ import { Auth } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
 
+//TODO: Implement better mock
+const authMock = {
+  auth: jest.fn(),
+};
+
+//TODO: Implement better mock
+const firestoreMock = {
+  firestore: jest.fn(),
+};
+
 describe('AuthService', () => {
   let service: AuthService;
-
-  //TODO: Implement better mock
-  const authMock = {
-    auth: jest.fn(),
-  };
-
-  //TODO: Implement better mock
-  const firestoreMock = {
-    firestore: jest.fn(),
-  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({

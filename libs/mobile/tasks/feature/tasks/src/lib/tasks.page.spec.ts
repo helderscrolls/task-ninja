@@ -6,6 +6,7 @@ import {
   TaskService,
 } from '@task-ninja/mobile/tasks/data-access';
 
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
 import { TasksPageComponent } from './tasks.page';
 
@@ -47,6 +48,7 @@ describe('TasksPageComponent', () => {
           useValue: taskServiceMock,
         },
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TasksPageComponent);

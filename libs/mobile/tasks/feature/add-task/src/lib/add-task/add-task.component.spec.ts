@@ -4,17 +4,17 @@ import { IonicModule, ModalController } from '@ionic/angular';
 import { TaskService } from '@task-ninja/mobile/tasks/data-access';
 import { AddTaskComponent } from './add-task.component';
 
+const taskServiceMock = {
+  addTask: jest.fn(),
+};
+
+const modalControllerMock = {
+  dismiss: jest.fn(),
+};
+
 describe('AddTaskComponent', () => {
   let component: AddTaskComponent;
   let fixture: ComponentFixture<AddTaskComponent>;
-
-  const taskServiceMock = {
-    addTask: jest.fn(),
-  };
-
-  const modalControllerMock = {
-    dismiss: jest.fn(),
-  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

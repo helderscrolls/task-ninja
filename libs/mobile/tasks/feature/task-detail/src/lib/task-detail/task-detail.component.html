@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Tasks" defaultHref="/tasks"></ion-back-button>
+    </ion-buttons>
+    <ion-title> Details </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="selectedTask$ | async as selectedTask">
+  <div class="ion-padding">
+    <ion-list-header class="ion-list-header-small">
+      <ion-label>Information</ion-label>
+    </ion-list-header>
+
+    <ion-list class="list-custom" lines="full">
+      <ion-item>
+        <ion-label>
+          <p>Title</p>
+        </ion-label>
+
+        <ion-input
+          readonly
+          slot="end"
+          class="font-size-small ion-text-right ion-no-padding-end"
+          value="{{ selectedTask.title }}"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <p>Description</p>
+        </ion-label>
+
+        <ion-input
+          readonly
+          slot="end"
+          class="font-size-small ion-text-right ion-no-padding-end"
+          value="{{ selectedTask.description }}"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <p>Category</p>
+        </ion-label>
+
+        <ion-input
+          readonly
+          slot="end"
+          class="font-size-small ion-text-right ion-no-padding-end"
+          value="{{ selectedTask.type.name }}"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <p>Owner</p>
+        </ion-label>
+
+        <ion-input
+          readonly
+          slot="end"
+          class="font-size-small ion-text-right ion-no-padding-end"
+          value="{{ selectedTask.owner }}"
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <hr class="hr-medium" />
+
+    <ion-list-header class="ion-list-header-small">
+      <ion-label>Actions</ion-label>
+    </ion-list-header>
+
+    <ion-list class="list-custom" lines="full">
+      <ion-item button>
+        <ion-avatar slot="start" class="ion-avatar-default-icon">
+          <ion-icon color="primary" name="receipt"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h3>Edit</h3>
+          <p class="font-size-smallest">Edit task content</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item button (click)="assignTask()">
+        <ion-avatar slot="start" class="ion-avatar-default-icon">
+          <ion-icon color="primary" name="rocket"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h3>Assign</h3>
+          <p class="font-size-smallest">Assign task to yourself</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <hr class="hr-medium" />
+
+    <ion-list class="list-custom" lines="full">
+      <ion-item button detail="false" (click)="deleteTask()">
+        <ion-icon slot="start" color="danger" name="close"></ion-icon>
+        <ion-label color="danger">
+          <h3>Delete task</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

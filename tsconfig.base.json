@@ -7,6 +7,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
@@ -50,6 +51,9 @@
       ],
       "@task-ninja/mobile/tasks/feature/add-task": [
         "libs/mobile/tasks/feature/add-task/src/index.ts"
+      ],
+      "@task-ninja/mobile/tasks/feature/task-detail": [
+        "libs/mobile/tasks/feature/task-detail/src/index.ts"
       ],
       "@task-ninja/mobile/tasks/feature/tasks": [
         "libs/mobile/tasks/feature/tasks/src/index.ts"
