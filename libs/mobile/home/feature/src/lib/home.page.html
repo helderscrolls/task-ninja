@@ -32,7 +32,7 @@
     <!-- Skeletons -->
     <ion-list
       class="item-card-list animate__animated animate__fadeIn"
-      *ngIf="!contentLoaded"
+      *ngIf="!ownedTasksLoaded"
     >
       <ion-item lines="none" *ngFor="let i of [].constructor(3);">
         <ion-avatar slot="start">
@@ -51,46 +51,21 @@
 
     <ion-list
       class="item-card-list animate__animated animate__fadeIn"
-      *ngIf="contentLoaded"
+      *ngIf="ownedTasksLoaded"
       lines="none"
     >
-      <ion-item button detail>
+      <ion-item
+        button
+        detail
+        routerLink="/tasks/detail/{{ownedTask.id}}"
+        *ngFor="let ownedTask of ownedTasks"
+      >
         <ion-avatar slot="start" class="ion-avatar-default-icon">
-          <ion-icon name="sparkles"></ion-icon>
+          <ion-icon name="{{ ownedTask.type.icon }}"></ion-icon>
         </ion-avatar>
         <ion-label>
-          <h3>Vacuum upstairs</h3>
-          <p>Cleaning &middot; Deder</p>
-        </ion-label>
-      </ion-item>
-
-      <ion-item button detail>
-        <ion-avatar slot="start" class="ion-avatar-default-icon">
-          <ion-icon name="build"></ion-icon>
-        </ion-avatar>
-        <ion-label>
-          <h3>Oil the door hinges</h3>
-          <p>Maintenance &middot; Deder</p>
-        </ion-label>
-      </ion-item>
-
-      <ion-item button detail>
-        <ion-avatar slot="start" class="ion-avatar-default-icon">
-          <ion-icon name="leaf"></ion-icon>
-        </ion-avatar>
-        <ion-label>
-          <h3>Remove weeds</h3>
-          <p>Gardening &middot; Deder</p>
-        </ion-label>
-      </ion-item>
-
-      <ion-item button detail>
-        <ion-avatar slot="start" class="ion-avatar-default-icon">
-          <ion-icon name="build"></ion-icon>
-        </ion-avatar>
-        <ion-label>
-          <h3>You had to update your app to see me</h3>
-          <p>Maintenance &middot; CI</p>
+          <h3>{{ ownedTask.title }}</h3>
+          <p>{{ ownedTask.type.name }}</p>
         </ion-label>
       </ion-item>
     </ion-list>

@@ -34,6 +34,7 @@ describe('TasksPageComponent', () => {
       type: categoryMock,
     },
   ];
+
   const taskServiceMock = {
     getTasks: jest.fn().mockReturnValue(of(taskArrayMock)),
   };

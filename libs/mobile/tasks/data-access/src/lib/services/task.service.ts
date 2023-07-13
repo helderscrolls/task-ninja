@@ -9,10 +9,12 @@ import {
   deleteDoc,
   doc,
   docData,
+  limit,
   orderBy,
   query,
   serverTimestamp,
   updateDoc,
+  where,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -41,6 +43,21 @@ export class TaskService {
   getTasks(): Observable<Task[]> {
     const tasksRef = collection(this.firestore, 'tasks');
     const tasksRefQuery = query(tasksRef, orderBy('createdAt', 'desc'));
+
+    return collectionData(tasksRefQuery, { idField: 'id' }) as Observable<
+      Task[]
+    >;
+  }
+
+  getOwnedTasks(): Observable<Task[]> {
+    const currentUser = this.auth.currentUser?.displayName;
+    const tasksRef = collection(this.firestore, 'tasks');
+    const tasksRefQuery = query(
+      tasksRef,
+      where('owner', '==', currentUser),
+      limit(3),
+      orderBy('createdAt', 'desc')
+    );
 
     return collectionData(tasksRefQuery, { idField: 'id' }) as Observable<
       Task[]
