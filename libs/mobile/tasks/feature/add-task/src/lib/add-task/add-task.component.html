@@ -52,17 +52,9 @@
             [interfaceOptions]="customPopoverOptions"
             placeholder="Select One"
           >
-            <ion-select-option value="uncategorized">
-              Uncategorized
+            <ion-select-option *ngFor="let type of tasksType" [value]="type">
+              {{ type.name }}
             </ion-select-option>
-
-            <ion-select-option value="Cleaning">Cleaning</ion-select-option>
-
-            <ion-select-option value="Maintenance">
-              Maintenance
-            </ion-select-option>
-
-            <ion-select-option value="Gardening">Gardening</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-text

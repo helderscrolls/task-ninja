@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 import {
   FieldValue,
   Firestore,
@@ -17,19 +18,25 @@ import { Observable } from 'rxjs';
 
 export interface Task {
   id?: string;
-  userId?: string;
+  owner: string | null | undefined;
   title: string;
   description: string;
-  type: string;
+  type: Category;
   createdAt?: FieldValue;
   updatedAt?: FieldValue;
+}
+
+export interface Category {
+  id: number;
+  name: string;
+  icon: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore, private auth: Auth) {}
 
   getTasks(): Observable<Task[]> {
     const tasksRef = collection(this.firestore, 'tasks');
@@ -46,9 +53,12 @@ export class TaskService {
   }
 
   addTask(task: Task) {
+    console.log('Current User', this.auth.currentUser);
+    console.log('TASK ON SERVICE: ', task);
     const timestampedTask: Task = {
       ...task,
       createdAt: serverTimestamp(),
+      owner: this.auth.currentUser?.displayName,
     };
 
     const tasksRef = collection(this.firestore, 'tasks');
@@ -67,6 +77,7 @@ export class TaskService {
       description: task.description,
       type: task.type,
       updatedAt: serverTimestamp(),
+      owner: this.auth.currentUser?.displayName,
     });
   }
 }

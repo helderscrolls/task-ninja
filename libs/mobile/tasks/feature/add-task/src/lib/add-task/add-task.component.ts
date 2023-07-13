@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { LoadingController, ModalController } from '@ionic/angular';
-import { TaskService } from '@task-ninja/mobile/tasks/data-access';
+import { Category, TaskService } from '@task-ninja/mobile/tasks/data-access';
 @Component({
   selector: 'task-ninja-add-task',
   templateUrl: './add-task.component.html',
@@ -24,6 +24,29 @@ export class AddTaskComponent {
     message: 'Select one',
     cssClass: 'popover-in-modal',
   };
+
+  tasksType: Category[] = [
+    {
+      id: 1,
+      name: 'Uncategorized',
+      icon: 'help-outline',
+    },
+    {
+      id: 2,
+      name: 'Cleaning',
+      icon: 'sparkles',
+    },
+    {
+      id: 3,
+      name: 'Maintenance',
+      icon: 'build',
+    },
+    {
+      id: 3,
+      name: 'Gardening',
+      icon: 'leaf',
+    },
+  ];
 
   constructor(
     private modalController: ModalController,

@@ -29,4 +29,9 @@ export class TasksPageComponent implements OnInit, OnDestroy {
     this.isDestroyed$.next(undefined);
     this.isDestroyed$.complete();
   }
+
+  // TODO: Implement Filters Actions Sheet
+  filter(): void {
+    console.log('Should open filters');
+  }
 }

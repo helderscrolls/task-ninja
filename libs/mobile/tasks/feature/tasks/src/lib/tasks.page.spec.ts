@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { Task, TaskService } from '@task-ninja/mobile/tasks/data-access';
+import {
+  Category,
+  Task,
+  TaskService,
+} from '@task-ninja/mobile/tasks/data-access';
 
 import { of } from 'rxjs';
 import { TasksPageComponent } from './tasks.page';
@@ -9,16 +13,24 @@ describe('TasksPageComponent', () => {
   let component: TasksPageComponent;
   let fixture: ComponentFixture<TasksPageComponent>;
 
+  const categoryMock: Category = {
+    id: 69,
+    name: 'Cleaning',
+    icon: 'sparkle',
+  };
+
   const taskArrayMock: Task[] = [
     {
       title: 'Clean windows',
       description: 'Clean upstairs windows',
-      type: 'Cleaning',
+      owner: 'John Doe',
+      type: categoryMock,
     },
     {
       title: 'Fix radiators',
       description: 'Fix bedroom radiator',
-      type: 'Maintenance',
+      owner: 'Karen Doe',
+      type: categoryMock,
     },
   ];
   const taskServiceMock = {

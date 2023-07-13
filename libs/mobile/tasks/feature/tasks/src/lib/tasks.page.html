@@ -1,6 +1,12 @@
-<ion-header [translucent]="true">
+<ion-header collapse="fade" [translucent]="true">
   <ion-toolbar>
     <ion-title> Tasks </ion-title>
+
+    <ion-buttons slot="primary">
+      <ion-button (click)="filter()">
+        <ion-icon slot="icon-only" name="filter"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -9,10 +15,16 @@
     <ion-toolbar>
       <ion-title size="large">Tasks</ion-title>
     </ion-toolbar>
+
+    <ion-toolbar>
+      <ion-searchbar
+        showCancelButton="focus"
+        placeholder="Owner, category ..."
+      ></ion-searchbar>
+    </ion-toolbar>
   </ion-header>
 
   <div class="ion-padding">
-    <!-- Skeletons -->
     <ng-container *ngIf="!contentLoaded">
       <ion-list-header class="ion-list-header-small">
         <ion-label
@@ -65,11 +77,11 @@
           *ngFor="let task of tasks"
         >
           <ion-avatar slot="start" class="ion-avatar-default-icon">
-            <ion-icon name="cafe"></ion-icon>
+            <ion-icon name="{{ task.type.icon }}"></ion-icon>
           </ion-avatar>
           <ion-label>
-            <h3>{{task.title}}</h3>
-            <p>{{task.type}} &middot; {{ task.userId }}</p>
+            <h3>{{ task.title }}</h3>
+            <p>{{ task.type.name }} &middot; {{ task.owner }}</p>
           </ion-label>
         </ion-item>
       </ion-list>

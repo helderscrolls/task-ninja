@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from '@angular/fire/auth';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 @Injectable({
@@ -26,11 +27,13 @@ export class AuthService {
       );
 
       const uid = user.user.uid;
-
       const userDocRef = doc(this.firestore, `users/${uid}`);
+
       await setDoc(userDocRef, {
         username,
       });
+
+      await updateProfile(user.user, { displayName: username });
 
       return user;
     } catch (e) {

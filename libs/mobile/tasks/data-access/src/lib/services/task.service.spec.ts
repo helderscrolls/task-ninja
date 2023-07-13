@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
+import { Auth } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { TaskService } from './task.service';
 
@@ -11,12 +12,21 @@ describe('TaskService', () => {
     firestore: jest.fn(),
   };
 
+  //TODO: Implement better mock
+  const authMock = {
+    auth: jest.fn(),
+  };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         {
           provide: Firestore,
           useValue: firestoreMock,
+        },
+        {
+          provide: Auth,
+          useValue: authMock,
         },
       ],
     });
