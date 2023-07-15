@@ -3,9 +3,14 @@
     <ion-buttons slot="start">
       <ion-button (click)="cancel()"> Cancel </ion-button>
     </ion-buttons>
+
     <ion-title>
       {{ type === 'add-task' ? 'Add task' : 'Edit task' }}
     </ion-title>
+
+    <ion-buttons slot="end" *ngIf="type === 'edit-task'">
+      <ion-button (click)="update()"> Edit </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
