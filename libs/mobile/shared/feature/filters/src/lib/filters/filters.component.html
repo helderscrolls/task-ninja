@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()"> Cancel </ion-button>
+    </ion-buttons>
+    <ion-title> Filter (WIP) </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="apply()"> Apply </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <ion-list-header class="ion-list-header-small">
+      <ion-label>Data</ion-label>
+    </ion-list-header>
+
+    <ion-list class="list-custom" lines="full">
+      <ion-item>
+        <ion-label>
+          <p>Categories</p>
+        </ion-label>
+        <ion-select
+          class="always-flip"
+          toggleIcon="caret-down-sharp"
+          [interfaceOptions]="customPopoverOptions"
+          interface="popover"
+          placeholder="Select one"
+        >
+          <ion-select-option *ngFor="let type of tasksType" [value]="type">
+            {{ type.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <p>Owners</p>
+        </ion-label>
+        <ion-select
+          class="always-flip"
+          toggleIcon="caret-down-sharp"
+          [interfaceOptions]="customPopoverOptions"
+          interface="popover"
+          placeholder="Select one"
+        >
+          <ion-select-option value="all">All</ion-select-option>
+          <ion-select-option value="contracts-only"
+            >Contracts only</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

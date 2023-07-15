@@ -40,6 +40,9 @@
       "@task-ninja/mobile/shared/data-access": [
         "libs/mobile/shared/data-access/src/index.ts"
       ],
+      "@task-ninja/mobile/shared/feature/filters": [
+        "libs/mobile/shared/feature/filters/src/index.ts"
+      ],
       "@task-ninja/mobile/shared/feature/settings": [
         "libs/mobile/shared/feature/settings/src/index.ts"
       ],

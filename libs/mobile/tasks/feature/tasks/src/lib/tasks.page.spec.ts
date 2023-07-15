@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonRouterOutlet, IonicModule } from '@ionic/angular';
 import {
   Category,
   Task,
@@ -39,6 +39,10 @@ describe('TasksPageComponent', () => {
     getTasks: jest.fn().mockReturnValue(of(taskArrayMock)),
   };
 
+  const routerOutletMock = {
+    nativeEl: '',
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TasksPageComponent],
@@ -47,6 +51,10 @@ describe('TasksPageComponent', () => {
         {
           provide: TaskService,
           useValue: taskServiceMock,
+        },
+        {
+          provide: IonRouterOutlet,
+          useValue: routerOutletMock,
         },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],

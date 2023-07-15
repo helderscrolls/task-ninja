@@ -4,17 +4,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { TabsPageComponent } from './tabs.page';
 
+const modalControllerMock = {
+  create: jest.fn(),
+};
+
+const routerOutletMock = {
+  nativeEl: '',
+};
+
 describe('TabsPageComponent', () => {
   let component: TabsPageComponent;
   let fixture: ComponentFixture<TabsPageComponent>;
-
-  const modalControllerMock = {
-    create: jest.fn(),
-  };
-
-  const routerOutletMock = {
-    nativeEl: '',
-  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
