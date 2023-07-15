@@ -87,8 +87,8 @@ export class TaskService {
     return deleteDoc(taskDocRef);
   }
 
-  updateTask(task: Task) {
-    const taskDocRef = doc(this.firestore, `tasks/${task.id}`);
+  updateTask(task: Task, id: string) {
+    const taskDocRef = doc(this.firestore, `tasks/${id}`);
     return updateDoc(taskDocRef, {
       title: task.title,
       description: task.description,

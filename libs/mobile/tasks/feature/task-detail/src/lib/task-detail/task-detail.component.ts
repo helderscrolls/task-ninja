@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import {
+  IonRouterOutlet,
+  LoadingController,
+  ModalController,
+} from '@ionic/angular';
 import { ToastService } from '@task-ninja/mobile/shared/data-access';
 import { Task, TaskService } from '@task-ninja/mobile/tasks/data-access';
+import { AddTaskComponent } from '@task-ninja/mobile/tasks/feature/add-task';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -21,7 +26,9 @@ export class TaskDetailComponent implements OnInit {
     private taskService: TaskService,
     private loadingController: LoadingController,
     private toastService: ToastService,
-    private auth: Auth
+    private auth: Auth,
+    private modalController: ModalController,
+    private routerOutlet: IonRouterOutlet
   ) {}
 
   ngOnInit(): void {
@@ -61,5 +68,26 @@ export class TaskDetailComponent implements OnInit {
     await loading.dismiss();
 
     this.router.navigateByUrl('/tasks', { replaceUrl: true });
+
+    this.toastService.presentToast(
+      'Task successfully deleted',
+      '',
+      'top',
+      'success',
+      2000
+    );
+  }
+
+  async editTask(selectedTask: Task) {
+    const modal = await this.modalController.create({
+      component: AddTaskComponent,
+      componentProps: {
+        type: 'edit-task',
+        taskId: this.selectedTaskId,
+        selectedTask,
+      },
+      presentingElement: this.routerOutlet.nativeEl,
+    });
+    await modal.present();
   }
 }

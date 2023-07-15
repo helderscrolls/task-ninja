@@ -32,12 +32,12 @@
           <p>Description</p>
         </ion-label>
 
-        <ion-input
+        <ion-textarea
           readonly
           slot="end"
           class="font-size-small ion-text-right ion-no-padding-end"
           value="{{ selectedTask.description }}"
-        ></ion-input>
+        ></ion-textarea>
       </ion-item>
 
       <ion-item>
@@ -74,7 +74,7 @@
     </ion-list-header>
 
     <ion-list class="list-custom" lines="full">
-      <ion-item button>
+      <ion-item button (click)="editTask(selectedTask)">
         <ion-avatar slot="start" class="ion-avatar-default-icon">
           <ion-icon color="primary" name="receipt"></ion-icon>
         </ion-avatar>

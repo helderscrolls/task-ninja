@@ -29,6 +29,7 @@ export class TabsPageComponent {
           handler: async () => {
             const modal = await this.modalController.create({
               component: AddTaskComponent,
+              componentProps: { type: 'add-task' },
               presentingElement: this.routerOutlet.nativeEl,
             });
             return await modal.present();

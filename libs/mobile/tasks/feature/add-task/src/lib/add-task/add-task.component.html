@@ -3,7 +3,9 @@
     <ion-buttons slot="start">
       <ion-button (click)="cancel()"> Cancel </ion-button>
     </ion-buttons>
-    <ion-title> Add task </ion-title>
+    <ion-title>
+      {{ type === 'add-task' ? 'Add task' : 'Edit task' }}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -51,6 +53,7 @@
             interface="popover"
             [interfaceOptions]="customPopoverOptions"
             placeholder="Select One"
+            [compareWith]="compareWith"
           >
             <ion-select-option *ngFor="let type of tasksType" [value]="type">
               {{ type.name }}
@@ -70,9 +73,25 @@
 
 <ion-footer class="modal-footer" collapse="fade">
   <ion-toolbar>
-    <form class="form-default" [formGroup]="addTaskForm" (submit)="save()">
+    <form
+      class="form-default"
+      [formGroup]="addTaskForm"
+      (submit)="save()"
+      *ngIf="type === 'add-task'"
+    >
       <ion-button type="submit" expand="block" color="primary">
         Save task
+      </ion-button>
+    </form>
+
+    <form
+      class="form-default"
+      [formGroup]="addTaskForm"
+      (submit)="update()"
+      *ngIf="type === 'edit-task'"
+    >
+      <ion-button type="submit" expand="block" color="primary">
+        Edit task
       </ion-button>
     </form>
   </ion-toolbar>

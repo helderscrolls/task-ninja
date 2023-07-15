@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Auth } from '@angular/fire/auth';
 import { ActivatedRoute } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonRouterOutlet, IonicModule } from '@ionic/angular';
 import { TaskService } from '@task-ninja/mobile/tasks/data-access';
 import { TaskDetailComponent } from './task-detail.component';
 
@@ -23,6 +23,10 @@ const taskServiceMock = {
   getTaskById: jest.fn(),
 };
 
+const routerOutletMock = {
+  nativeEl: '',
+};
+
 describe('TaskDetailComponent', () => {
   let component: TaskDetailComponent;
   let fixture: ComponentFixture<TaskDetailComponent>;
@@ -42,6 +46,10 @@ describe('TaskDetailComponent', () => {
         {
           provide: TaskService,
           useValue: taskServiceMock,
+        },
+        {
+          provide: IonRouterOutlet,
+          useValue: routerOutletMock,
         },
       ],
       imports: [IonicModule.forRoot()],
