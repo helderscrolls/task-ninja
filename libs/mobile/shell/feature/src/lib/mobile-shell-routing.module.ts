@@ -42,6 +42,14 @@ const routes: Routes = [
       ),
     ...canActivate(redirectLoggedInToHome),
   },
+  {
+    path: 'settings',
+    loadChildren: () =>
+      import('@task-ninja/mobile/shared/feature/settings').then(
+        (m) => m.SettingsModule
+      ),
+    ...canActivate(redirectUnauthorizedToLogin),
+  },
 ];
 @NgModule({
   imports: [

@@ -10,16 +10,16 @@ import {
   provideAuth,
 } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { Capacitor } from '@capacitor/core';
 import { MobileShellModule } from '@task-ninja/mobile/shell/feature';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    IonicModule.forRoot({ innerHTMLTemplatesEnabled: true }),
+    IonicModule.forRoot({ innerHTMLTemplatesEnabled: true, mode: 'ios' }),
     MobileShellModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideAuth(() => getAuth()),

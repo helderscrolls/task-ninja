@@ -1,7 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
-import { AuthService } from '@task-ninja/mobile/auth/data-access';
 import { Task, TaskService } from '@task-ninja/mobile/tasks/data-access';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -18,12 +16,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   private isDestroyed$: Subject<void> = new Subject();
   currentUser: string;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private taskService: TaskService,
-    private auth: Auth
-  ) {}
+  constructor(private taskService: TaskService, private auth: Auth) {}
 
   ngOnInit(): void {
     this.currentUser = this.auth.currentUser?.displayName as string;
@@ -50,11 +43,5 @@ export class HomePageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.isDestroyed$.next(undefined);
     this.isDestroyed$.complete();
-  }
-
-  async signOut() {
-    await this.authService.signOut();
-
-    this.router.navigateByUrl('/signin', { replaceUrl: true });
   }
 }

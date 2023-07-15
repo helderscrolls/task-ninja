@@ -3,7 +3,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { AuthService } from '@task-ninja/mobile/auth/data-access';
 import {
   Category,
   Task,
@@ -33,10 +32,6 @@ const taskArrayMock: Task[] = [
   },
 ];
 
-const authServiceMock = {
-  signOut: jest.fn(),
-};
-
 const taskServiceMock = {
   getOwnedTasks: jest.fn().mockReturnValue(of(taskArrayMock)),
   getTasks: jest.fn().mockReturnValue(of(taskArrayMock)),
@@ -56,7 +51,6 @@ describe('HomePageComponent', () => {
       declarations: [HomePageComponent],
       imports: [IonicModule.forRoot()],
       providers: [
-        { provide: AuthService, useValue: authServiceMock },
         {
           provide: TaskService,
           useValue: taskServiceMock,

@@ -1,0 +1,57 @@
+<ion-header collapse="fade" [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Home" defaultHref="/home"> </ion-back-button>
+    </ion-buttons>
+    <ion-title> Settings </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="hero hero-light-gradient">
+    <ion-avatar>
+      <ion-icon
+        class="avatar-icon-placeholder"
+        name="person-circle"
+        color="tertiary"
+      >
+      </ion-icon>
+    </ion-avatar>
+    <p class="font-weight-500">{{ auth.currentUser?.displayName }}</p>
+    <ion-text color="medium">
+      <small>{{ auth.currentUser?.email }}</small>
+    </ion-text>
+  </div>
+
+  <div class="ion-padding">
+    <ion-list-header class="ion-list-header-small">
+      <ion-label>Personal</ion-label>
+    </ion-list-header>
+
+    <ion-list class="list-custom" lines="full">
+      <ion-item button routerLink="profile/edit" disabled>
+        <ion-icon slot="start" color="medium" name="person"></ion-icon>
+        <ion-label>
+          <h3>Profile (NOT IMPLEMENTED)</h3>
+        </ion-label>
+      </ion-item>
+      <ion-item button routerLink="account" disabled>
+        <ion-icon slot="start" color="medium" name="person-circle"></ion-icon>
+        <ion-label>
+          <h3>Account settings (NOT IMPLEMENTED)</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <hr class="hr-medium" />
+
+    <ion-list class="list-custom" lines="full" (click)="signOut()">
+      <ion-item button detail="false">
+        <ion-icon slot="start" color="danger" name="log-out"></ion-icon>
+        <ion-label color="danger">
+          <h3>Sign out</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
