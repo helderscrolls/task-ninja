@@ -5,13 +5,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '@task-ninja/mobile/auth/data-access';
 import { SigninPageComponent } from './signin.page';
 
+const authServiceMock = {
+  signIn: jest.fn(),
+};
+
 describe('SigninPageComponent', () => {
   let component: SigninPageComponent;
   let fixture: ComponentFixture<SigninPageComponent>;
-
-  const authServiceMock = {
-    signIn: jest.fn(),
-  };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

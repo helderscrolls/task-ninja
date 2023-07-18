@@ -3,6 +3,7 @@ import {
   Auth,
   UserCredential,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -56,5 +57,15 @@ export class AuthService {
 
   signOut(): Promise<void> {
     return signOut(this.auth);
+  }
+
+  async resetPassword(email: string): Promise<void | null> {
+    try {
+      const emailToReset = await sendPasswordResetEmail(this.auth, email);
+
+      return emailToReset;
+    } catch (e) {
+      return null;
+    }
   }
 }
