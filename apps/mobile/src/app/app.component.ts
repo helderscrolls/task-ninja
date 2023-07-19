@@ -11,27 +11,27 @@ export class AppComponent implements OnInit {
   constructor(private swUpdate: SwUpdate, private toastService: ToastService) {}
 
   async ngOnInit() {
-    this.swUpdate.versionUpdates.subscribe(async (res) => {
-      if (res.type === 'VERSION_READY') {
-        const toast = await this.toastService.updateAvailableToast();
-
-        toast
-          .onDidDismiss()
-          .then(() => this.swUpdate.activateUpdate())
-          .then(() => window.location.reload());
-      }
-    });
-
-    this.swUpdate.checkForUpdate();
-
-    setInterval(() => {
-      this.swUpdate.checkForUpdate();
-    }, 15 * 60 * 1000);
-
-    if (!this.swUpdate.isEnabled) {
-      console.log('swUpdate Enabled ? Nope :(');
-    } else {
+    if (this.swUpdate.isEnabled) {
       console.log('swUpdate Enabled ? Yes :)');
+
+      this.swUpdate.versionUpdates.subscribe(async (res) => {
+        if (res.type === 'VERSION_READY') {
+          const toast = await this.toastService.updateAvailableToast();
+
+          toast
+            .onDidDismiss()
+            .then(() => this.swUpdate.activateUpdate())
+            .then(() => window.location.reload());
+        }
+      });
+
+      this.swUpdate.checkForUpdate();
+
+      setInterval(() => {
+        this.swUpdate.checkForUpdate();
+      }, 15 * 60 * 1000);
+    } else {
+      console.log('swUpdate Enabled ? Nope :(');
     }
   }
 }
