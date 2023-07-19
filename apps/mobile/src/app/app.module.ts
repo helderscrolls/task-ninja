@@ -15,6 +15,9 @@ import { Capacitor } from '@capacitor/core';
 import { MobileShellModule } from '@task-ninja/mobile/shell/feature';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,6 +42,18 @@ import { AppComponent } from './app.component';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    StoreModule.forRoot(
+      {},
+      {
+        metaReducers: [],
+        runtimeChecks: {
+          strictActionImmutability: true,
+          strictStateImmutability: true,
+        },
+      }
+    ),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ logOnly: !isDevMode() }),
   ],
   bootstrap: [AppComponent],
 })
