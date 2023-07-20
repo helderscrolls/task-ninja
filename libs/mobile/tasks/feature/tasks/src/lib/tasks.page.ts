@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { FiltersComponent } from '@task-ninja/mobile/shared/feature/filters';
-import { Task, TaskService } from '@task-ninja/mobile/tasks/data-access';
-import { Subject, takeUntil } from 'rxjs';
+import { Task, TasksFacade } from '@task-ninja/mobile/tasks/data-access';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'task-ninja-tasks',
@@ -10,25 +10,21 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['tasks.page.scss'],
 })
 export class TasksPageComponent implements OnInit, OnDestroy {
-  contentLoaded = false;
+  contentLoaded$: Observable<boolean>;
+  tasks$: Observable<Task[]>;
   tasks: Task[] = [];
   private isDestroyed$: Subject<void> = new Subject();
 
   constructor(
-    private taskService: TaskService,
     private modalController: ModalController,
-    private routerOutlet: IonRouterOutlet
+    private routerOutlet: IonRouterOutlet,
+    private tasksFacade: TasksFacade
   ) {}
 
   ngOnInit(): void {
-    this.taskService
-      .getTasks()
-      .pipe(takeUntil(this.isDestroyed$))
-      .subscribe((tasks) => {
-        console.log(tasks);
-        this.contentLoaded = true;
-        this.tasks = tasks;
-      });
+    this.tasksFacade.init();
+    this.tasks$ = this.tasksFacade.allTasks$;
+    this.contentLoaded$ = this.tasksFacade.loaded$;
   }
 
   ngOnDestroy(): void {

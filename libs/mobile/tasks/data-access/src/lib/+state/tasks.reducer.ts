@@ -1,5 +1,5 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as TasksActions from './tasks.actions';
 import { TasksEntity } from './tasks.models';
@@ -26,7 +26,7 @@ export const initialTasksState: TasksState = tasksAdapter.getInitialState({
 
 const reducer = createReducer(
   initialTasksState,
-  on(TasksActions.initTasks, (state) => ({
+  on(TasksActions.loadTasks, (state) => ({
     ...state,
     loaded: false,
     error: null,
@@ -34,7 +34,23 @@ const reducer = createReducer(
   on(TasksActions.loadTasksSuccess, (state, { tasks }) =>
     tasksAdapter.setAll(tasks, { ...state, loaded: true })
   ),
-  on(TasksActions.loadTasksFailure, (state, { error }) => ({ ...state, error }))
+  on(TasksActions.loadTasksFailure, (state, { error }) => ({
+    ...state,
+    error,
+  })),
+
+  on(TasksActions.addTask, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+  on(TasksActions.addTaskSuccess, (state, { task }) =>
+    tasksAdapter.addOne(task, { ...state, loading: false })
+  ),
+  on(TasksActions.addTaskFailure, (state, { error }) => ({
+    ...state,
+    error,
+  }))
 );
 
 export function tasksReducer(state: TasksState | undefined, action: Action) {

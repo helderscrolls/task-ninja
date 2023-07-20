@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
+import { Task } from '../services/task.service';
 import * as TasksActions from './tasks.actions';
-import * as TasksFeature from './tasks.reducer';
 import * as TasksSelectors from './tasks.selectors';
 
 @Injectable()
@@ -22,6 +22,10 @@ export class TasksFacade {
    * or more tasks in your Effects.
    */
   init() {
-    this.store.dispatch(TasksActions.initTasks());
+    this.store.dispatch(TasksActions.loadTasks());
+  }
+
+  addTask(task: Task) {
+    this.store.dispatch(TasksActions.addTask({ task }));
   }
 }

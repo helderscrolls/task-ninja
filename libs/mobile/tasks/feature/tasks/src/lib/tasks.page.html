@@ -25,7 +25,7 @@
   </ion-header>
 
   <div class="ion-padding">
-    <ng-container *ngIf="!contentLoaded">
+    <ng-container *ngIf="(contentLoaded$ | async) === false">
       <ion-list-header class="ion-list-header-small">
         <ion-label
           ><ion-skeleton-text animated style="width: 50%"></ion-skeleton-text
@@ -65,7 +65,7 @@
       </ion-list>
     </ng-container>
 
-    <ng-container *ngIf="contentLoaded">
+    <ng-container *ngIf="contentLoaded$ | async">
       <ion-list
         class="list-custom animate__animated animate__fadeIn"
         lines="full"
@@ -73,8 +73,8 @@
         <ion-item
           button
           detail="false"
+          *ngFor="let task of tasks$ | async"
           routerLink="detail/{{task.id}}"
-          *ngFor="let task of tasks"
         >
           <ion-avatar slot="start" class="ion-avatar-default-icon">
             <ion-icon name="{{ task.type.icon }}"></ion-icon>

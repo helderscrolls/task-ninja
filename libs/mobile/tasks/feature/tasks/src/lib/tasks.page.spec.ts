@@ -3,7 +3,7 @@ import { IonRouterOutlet, IonicModule } from '@ionic/angular';
 import {
   Category,
   Task,
-  TaskService,
+  TasksFacade,
 } from '@task-ninja/mobile/tasks/data-access';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -35,8 +35,10 @@ describe('TasksPageComponent', () => {
     },
   ];
 
-  const taskServiceMock = {
-    getTasks: jest.fn().mockReturnValue(of(taskArrayMock)),
+  const taskFacadeMock = {
+    allTasks$: of(taskArrayMock),
+    loaded$: of(true),
+    init: jest.fn(),
   };
 
   const routerOutletMock = {
@@ -49,12 +51,12 @@ describe('TasksPageComponent', () => {
       imports: [IonicModule.forRoot()],
       providers: [
         {
-          provide: TaskService,
-          useValue: taskServiceMock,
-        },
-        {
           provide: IonRouterOutlet,
           useValue: routerOutletMock,
+        },
+        {
+          provide: TasksFacade,
+          useValue: taskFacadeMock,
         },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],

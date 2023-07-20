@@ -1,20 +1,41 @@
 import { Action } from '@ngrx/store';
 
+import { Category, Task } from '../services/task.service';
 import * as TasksActions from './tasks.actions';
 import { TasksEntity } from './tasks.models';
 import { TasksState, initialTasksState, tasksReducer } from './tasks.reducer';
 
+const categoryMock: Category = {
+  id: 69,
+  name: 'Cleaning',
+  icon: 'sparkle',
+};
+
+const taskArrayMock: Task[] = [
+  {
+    id: '69',
+    owner: 'John Doe',
+    type: categoryMock,
+    title: 'Clean windows',
+    description: 'Clean upstairs windows',
+  },
+  {
+    id: 'Super69',
+    owner: 'Karen Doe',
+    type: categoryMock,
+    title: 'Fix radiators',
+    description: 'Fix bedroom radiator',
+  },
+];
+
 describe('Tasks Reducer', () => {
-  const createTasksEntity = (id: string, name = ''): TasksEntity => ({
-    id,
-    name: name || `name-${id}`,
-  });
+  const createTasksEntity = (taskEntity: Task): TasksEntity => taskEntity;
 
   describe('valid Tasks actions', () => {
     it('loadTasksSuccess should return the list of known Tasks', () => {
       const tasks = [
-        createTasksEntity('PRODUCT-AAA'),
-        createTasksEntity('PRODUCT-zzz'),
+        createTasksEntity(taskArrayMock[0]),
+        createTasksEntity(taskArrayMock[1]),
       ];
       const action = TasksActions.loadTasksSuccess({ tasks });
 
