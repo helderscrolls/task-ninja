@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Category } from '@task-ninja/mobile/tasks/data-access';
 
@@ -8,6 +8,8 @@ import { Category } from '@task-ninja/mobile/tasks/data-access';
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent {
+  private readonly modalController = inject(ModalController);
+
   customPopoverOptions: any = {
     message: 'Select one',
     cssClass: 'popover-in-modal',
@@ -42,8 +44,6 @@ export class FiltersComponent {
       icon: 'leaf',
     },
   ];
-
-  constructor(private modalController: ModalController) {}
 
   // Cancel
   cancel() {

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { User } from '@firebase/auth';
 import { AuthService } from '@task-ninja/mobile/auth/data-access';
 
 @Component({
@@ -9,11 +10,14 @@ import { AuthService } from '@task-ninja/mobile/auth/data-access';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent {
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    public auth: Auth
-  ) {}
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+  private readonly auth = inject(Auth);
+
+  public currentUser: Partial<User> = {
+    displayName: this.auth.currentUser?.displayName,
+    email: this.auth.currentUser?.email,
+  };
 
   async signOut() {
     await this.authService.signOut();

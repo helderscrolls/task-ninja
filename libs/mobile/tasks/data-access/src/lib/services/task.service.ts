@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import {
   FieldValue,
@@ -38,7 +38,8 @@ export interface Category {
   providedIn: 'root',
 })
 export class TaskService {
-  constructor(private firestore: Firestore, private auth: Auth) {}
+  private readonly firestore = inject(Firestore);
+  private readonly auth = inject(Auth);
 
   getTasks(): Observable<Task[]> {
     const tasksRef = collection(this.firestore, 'tasks');

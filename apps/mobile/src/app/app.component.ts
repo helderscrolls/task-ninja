@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { ToastService } from '@task-ninja/mobile/shared/data-access';
 
@@ -8,7 +8,8 @@ import { ToastService } from '@task-ninja/mobile/shared/data-access';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private swUpdate: SwUpdate, private toastService: ToastService) {}
+  private readonly swUpdate = inject(SwUpdate);
+  private readonly toastService = inject(ToastService);
 
   async ngOnInit() {
     this.swUpdate.versionUpdates.subscribe(async (res) => {

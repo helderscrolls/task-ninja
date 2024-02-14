@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   ActionSheetController,
   IonRouterOutlet,
@@ -12,11 +12,9 @@ import { AddTaskComponent } from '@task-ninja/mobile/tasks/feature/add-task';
   styleUrls: ['tabs.page.scss'],
 })
 export class TabsPageComponent {
-  constructor(
-    private actionSheetController: ActionSheetController,
-    private modalController: ModalController,
-    private routerOutlet: IonRouterOutlet
-  ) {}
+  private readonly actionSheetController = inject(ActionSheetController);
+  private readonly modalController = inject(ModalController);
+  private readonly routerOutlet = inject(IonRouterOutlet);
 
   async selectAction() {
     const actionSheet = await this.actionSheetController.create({

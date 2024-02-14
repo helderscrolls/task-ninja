@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { FiltersComponent } from '@task-ninja/mobile/shared/feature/filters';
 import { Task, TaskService } from '@task-ninja/mobile/tasks/data-access';
@@ -10,15 +10,13 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['tasks.page.scss'],
 })
 export class TasksPageComponent implements OnInit, OnDestroy {
+  private readonly taskService = inject(TaskService);
+  private readonly modalController = inject(ModalController);
+  private readonly routerOutlet = inject(IonRouterOutlet);
+
   contentLoaded = false;
   tasks: Task[] = [];
   private isDestroyed$: Subject<void> = new Subject();
-
-  constructor(
-    private taskService: TaskService,
-    private modalController: ModalController,
-    private routerOutlet: IonRouterOutlet
-  ) {}
 
   ngOnInit(): void {
     this.taskService

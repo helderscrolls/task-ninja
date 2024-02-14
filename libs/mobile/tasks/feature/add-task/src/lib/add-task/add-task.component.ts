@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -18,6 +18,12 @@ import {
   styleUrls: ['./add-task.component.scss'],
 })
 export class AddTaskComponent implements OnInit {
+  private readonly modalController = inject(ModalController);
+  private readonly loadingController = inject(LoadingController);
+  private readonly formBuilder = inject(FormBuilder);
+  private readonly taskService = inject(TaskService);
+  private readonly toastService = inject(ToastService);
+
   @Input() type: string;
   @Input() taskId: string;
   @Input() selectedTask: Task;
@@ -56,14 +62,6 @@ export class AddTaskComponent implements OnInit {
       icon: 'leaf',
     },
   ];
-
-  constructor(
-    private modalController: ModalController,
-    private loadingController: LoadingController,
-    private formBuilder: FormBuilder,
-    private taskService: TaskService,
-    private toastService: ToastService
-  ) {}
 
   ngOnInit(): void {
     if (this.type === 'edit-task') {
