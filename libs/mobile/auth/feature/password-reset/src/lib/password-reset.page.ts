@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -15,19 +15,17 @@ import { ToastService } from '@task-ninja/mobile/shared/data-access';
   styleUrls: ['./password-reset.page.scss'],
 })
 export class PasswordResetPageComponent {
+  private readonly formBuilder = inject(FormBuilder);
+  private readonly authService = inject(AuthService);
+  private readonly toastService = inject(ToastService);
+  private readonly router = inject(Router);
+
   passwordResetForm: FormGroup = this.formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
   });
 
   currentYear: number = new Date().getFullYear();
   submitAttempt = false;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private toastService: ToastService,
-    private router: Router
-  ) {}
 
   // Maybe rename this function into formControls
   // to make it more readable in the future

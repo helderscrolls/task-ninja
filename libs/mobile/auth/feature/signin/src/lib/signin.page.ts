@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
@@ -11,6 +11,12 @@ import { ToastService } from '@task-ninja/mobile/shared/data-access';
   styleUrls: ['./signin.page.scss'],
 })
 export class SigninPageComponent {
+  private readonly authService = inject(AuthService);
+  private readonly loadingController = inject(LoadingController);
+  private readonly formBuilder = inject(FormBuilder);
+  private readonly toastService = inject(ToastService);
+  private readonly router = inject(Router);
+
   currentYear: number = new Date().getFullYear();
   submitAttempt = false;
 
@@ -21,14 +27,6 @@ export class SigninPageComponent {
       Validators.compose([Validators.minLength(6), Validators.required]),
     ],
   });
-
-  constructor(
-    private authService: AuthService,
-    private loadingController: LoadingController,
-    private formBuilder: FormBuilder,
-    private toastService: ToastService,
-    private router: Router
-  ) {}
 
   // Sign in
   async signIn() {

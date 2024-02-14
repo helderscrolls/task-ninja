@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -17,19 +17,17 @@ import { Observable } from 'rxjs';
   styleUrls: ['./task-detail.component.scss'],
 })
 export class TaskDetailComponent implements OnInit {
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly taskService = inject(TaskService);
+  private readonly loadingController = inject(LoadingController);
+  private readonly toastService = inject(ToastService);
+  private readonly auth = inject(Auth);
+  private readonly modalController = inject(ModalController);
+  private readonly routerOutlet = inject(IonRouterOutlet);
+
   selectedTask$: Observable<Task>;
   selectedTaskId: string;
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private taskService: TaskService,
-    private loadingController: LoadingController,
-    private toastService: ToastService,
-    private auth: Auth,
-    private modalController: ModalController,
-    private routerOutlet: IonRouterOutlet
-  ) {}
 
   ngOnInit(): void {
     this.selectedTaskId = this.route.snapshot.paramMap.get('id') as string;

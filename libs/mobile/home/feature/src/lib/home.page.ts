@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Task, TaskService } from '@task-ninja/mobile/tasks/data-access';
 import { Subject, takeUntil } from 'rxjs';
@@ -9,14 +9,15 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['home.page.scss'],
 })
 export class HomePageComponent implements OnInit, OnDestroy {
+  private readonly taskService = inject(TaskService);
+  private readonly auth = inject(Auth);
+
   ownedTasksLoaded = false;
   tasksLoaded = false;
   ownedTasks: Task[] = [];
   tasks: Task[] = [];
   private isDestroyed$: Subject<void> = new Subject();
   currentUser: string;
-
-  constructor(private taskService: TaskService, private auth: Auth) {}
 
   ngOnInit(): void {
     this.currentUser = this.auth.currentUser?.displayName as string;
